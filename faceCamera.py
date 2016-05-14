@@ -8,9 +8,6 @@ cap = cv2.VideoCapture(0)
 # コーデックの指定
 fourcc = cv2.cv.CV_FOURCC('m', 'p', '4', 'v')
 
-# 保存ファイルとフレームレートとサイズの指定
-out = cv2.VideoWriter('output.m4v', fourcc, 30, (760, 760))
-
 mirror = True
 size = (800, 600)
 
