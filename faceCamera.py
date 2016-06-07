@@ -44,6 +44,5 @@ while(cap.isOpened()):
 
 # 後始末
 cap.release()
-out.release()
 cv2.destroyAllWindows()
 
