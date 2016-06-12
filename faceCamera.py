@@ -36,8 +36,6 @@ while(cap.isOpened()):
 
     # "q"が押されたら抜ける
     if cv2.waitKey(1) & 0xFF == ord('q'):
-        # Adaptive Gaussian Thresholding
-        agt = cv2.adaptiveThreshold(frame,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
         cv2.imwrite("face.jpg",frame)
         break
 
