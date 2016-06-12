@@ -7,13 +7,15 @@ import sys
 #import codecs
 from PIL import Image
 import numpy as np
+import cv2
 
 # import module that I made
 import faceCamera
 import detectFace
 
+
 SCR_RECT = Rect(0, 0, 800, 800) # screen size depends on the size of detected face
-CS = 10 # cell size
+CS = 8 # cell size
 THRESHOLD = 100 # the threshold to pixelate the pic
 NUM_ROW = SCR_RECT.height / CS # row of field
 NUM_COL = SCR_RECT.width / CS # column of field
@@ -22,6 +24,32 @@ RAND_LIFE = 0.1
 
 # You can choose the file from agtFace.jpg or face.jpg
 img = np.array(Image.open('face.jpg').convert('L'))
+
+# Adaptive Threshold Gaussian filter
+img = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,11,2)
+
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 3)
+
+cv2.imwrite("thisIs.jpg",img)
+
+#myFilter1 = np.array([[-1,-1,-1,-1,-1,-1,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0,26, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1,-1,-1,-1,-1,-1,-1]], np.float32) / 2.0
+
+# Strengthen the outline
+#img = cv2.filter2D(img, -1, myFilter1)
+
+# Make the image smooth
+#img = cv2.medianBlur(img, 3)
+
 
 class LifeGame:
     def __init__(self):
@@ -41,8 +69,12 @@ class LifeGame:
         # main loop
         clock = pygame.time.Clock()
 
-        self.draw_face()
 
+        if detectFace.isFace :
+            self.draw_face()
+        else :
+            print "No face is detected..."
+            return 0
         while True:
             clock.tick(30)
             self.update()
@@ -199,6 +231,8 @@ class LifeGame:
         width = detectFace.detectedFace[2] + 100
         height = detectFace.detectedFace[3] + 100
         
+        THRESHOLD = np.average(img[x:x+width][y:y+height])
+
         for i in xrange(0,NUM_ROW):
             for j in xrange(0,NUM_COL):
                 searchX = x + i*width/NUM_ROW
