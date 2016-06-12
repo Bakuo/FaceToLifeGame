@@ -40,8 +40,6 @@ img = cv2.medianBlur(img, 3)
 img = cv2.medianBlur(img, 3)
 img = cv2.medianBlur(img, 3)
 
-cv2.imwrite("thisIs.jpg",img)
-
 #myFilter1 = np.array([[-1,-1,-1,-1,-1,-1,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0,26, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1,-1,-1,-1,-1,-1,-1]], np.float32) / 2.0
 
 # Strengthen the outline
