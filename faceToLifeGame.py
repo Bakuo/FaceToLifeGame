@@ -14,8 +14,8 @@ import faceCamera
 import detectFace
 
 
-SCR_RECT = Rect(0, 0, 800, 800) # screen size depends on the size of detected face
-CS = 8 # cell size
+CS = 6 # cell size
+SCR_RECT = Rect(0, 0, 6*int(800/6), 6*int(800/6)) # screen size depends on the size of detected face
 THRESHOLD = 100 # the threshold to pixelate the pic
 NUM_ROW = SCR_RECT.height / CS # row of field
 NUM_COL = SCR_RECT.width / CS # column of field
@@ -25,28 +25,16 @@ RAND_LIFE = 0.1
 # You can choose the file from agtFace.jpg or face.jpg
 img = np.array(Image.open('face.jpg').convert('L'))
 
-# Adaptive Threshold Gaussian filter
-img = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,11,2)
+# Adaptive Mean Thresholding
+img = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,21,2)
+cv2.imwrite("faceAdapt.jpg",img)
 
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
-img = cv2.medianBlur(img, 3)
+img = cv2.medianBlur(img, 5)
+cv2.imwrite("faceBlur1.jpg",img)
+for i in range(10):
+    img = cv2.medianBlur(img, 3)
+    cv2.imwrite("faceBlur"+str(i+3)+".jpg",img)
 
-#myFilter1 = np.array([[-1,-1,-1,-1,-1,-1,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0,26, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1, 0, 0, 0, 0, 0,-1],[-1,-1,-1,-1,-1,-1,-1]], np.float32) / 2.0
-
-# Strengthen the outline
-#img = cv2.filter2D(img, -1, myFilter1)
-
-# Make the image smooth
-#img = cv2.medianBlur(img, 3)
 
 
 class LifeGame:
@@ -225,9 +213,9 @@ class LifeGame:
 
     def draw_face(self):
         x = detectFace.detectedFace[0] - 50
-        y = detectFace.detectedFace[1] - 50
+        y = detectFace.detectedFace[1] - 80
         width = detectFace.detectedFace[2] + 100
-        height = detectFace.detectedFace[3] + 100
+        height = detectFace.detectedFace[3] + 150
         
         THRESHOLD = np.average(img[x:x+width][y:y+height])
 
