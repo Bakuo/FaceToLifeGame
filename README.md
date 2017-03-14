@@ -32,12 +32,12 @@ Conway's game of life that you can generate the starting pic of from your face w
 
 ![Input](https://github.com/Bakuo/FaceToLifeGame/blob/master/images/pixelatedFace.png)
 
-![Input](https://github.com/Bakuo/CharToLifeGame/blob/master/images/generation1.png)
+![Input](https://github.com/Bakuo/FaceToLifeGame/blob/master/images/generation1.png)
 
-![Input](https://github.com/Bakuo/CharToLifeGame/blob/master/images/generation2.png)
+![Input](https://github.com/Bakuo/FaceToLifeGame/blob/master/images/generation2.png)
 
-![Input](https://github.com/Bakuo/CharToLifeGame/blob/master/images/generation100.png)
+![Input](https://github.com/Bakuo/FaceToLifeGame/blob/master/images/generation100.png)
 
-![Input](https://github.com/Bakuo/CharToLifeGame/blob/master/images/generation151.png)
+![Input](https://github.com/Bakuo/FaceToLifeGame/blob/master/images/generation151.png)
 
-![Input](https://github.com/Bakuo/CharToLifeGame/blob/master/images/generation2828.png)
+![Input](https://github.com/Bakuo/FaceToLifeGame/blob/master/images/generation2828.png)
